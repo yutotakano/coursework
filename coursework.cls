@@ -16,6 +16,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{iftex}
+\RequirePackage{cleveref}
 \ifXeTeX
   \RequirePackage{fontspec}
   \setmainfont{Linux Libertine O} % this exists in %localappdata%\Programs\MiKTeX 2.9\fonts\opentype\public\libertine since I installed {libertine} once
@@ -113,7 +114,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % proof box
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newtcbtheorem{Proof}{Proof}{
+\newtcbtheorem[ 
+  crefname={Proof}{Proofs},
+  Crefname={Proof}{Proofs}
+]{Proof}{Proof}{
   enhanced,
   sharp corners,
   attach boxed title to top left={
@@ -121,7 +125,7 @@
   },
   colback=white,
   colframe=UOEblue,
-  fonttitle=\bfseries,
+  fonttitle=\small\jost,
   coltitle=white,
   boxed title style={
     sharp corners,
@@ -185,14 +189,13 @@
     \vbox{
       \vspace{3mm}
       \centering
-      \jost\Large\textcolor{UOEblue}{\@title}
-       
+      \jost\Large\textcolor{UOEblue}{\@title}\par
       \vspace{2mm}
       \jost\small\textcolor{PMS432}{\@session}
       \vspace{3mm}
     }
-  }
-  \vspace{3mm}
+  }\par
+  \vspace{5mm}
 }
 
 \AtBeginDocument{%

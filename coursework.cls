@@ -17,6 +17,7 @@
 \RequirePackage{amsthm}
 \RequirePackage{iftex}
 \RequirePackage{cleveref}
+\newcommand{\ts}{\textsuperscript}
 \ifXeTeX
   \RequirePackage{fontspec}
   \setmainfont{Linux Libertine O} % this exists in %localappdata%\Programs\MiKTeX 2.9\fonts\opentype\public\libertine since I installed {libertine} once
@@ -121,8 +122,12 @@
   enhanced,
   sharp corners,
   attach boxed title to top left={
+    xshift=-1mm,
+    yshift=-4mm,
     yshifttext=-1mm
   },
+  breakable,
+  top=1.3em,
   colback=white,
   colframe=UOEblue,
   fonttitle=\small\jost,
@@ -158,6 +163,14 @@
   \vspace{5mm}
 }
 \newcommand{\R}{\mathbb{R}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % create session macro

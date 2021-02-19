@@ -6,6 +6,8 @@
 \RequirePackage[a4paper, top=1cm, bottom=1cm, left=2cm, right=2cm, includeheadfoot]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
 \RequirePackage{algorithmicx}
 \RequirePackage{algpseudocode}
 \RequirePackage{algorithm}
@@ -192,6 +194,7 @@
 \lhead{\@author}
 \chead{\@session}
 \rhead{\today}
+\cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.5pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -6,7 +6,7 @@ A personal document class for TeX (specifically, XeLaTeX) for organising coursew
 
 You will need the `libertinus-fonts` TeX package installed from CTAN, or the equivalent .otf fonts directly unpacked into the same path as the .cls file (from [here](https://github.com/alerque/libertinus/release)).
 
-You will also need the Jost* 400 weight .otf file, which can either be installed system-wide, or placed next to the .cls file. It is included in this repo for convenience, together with the required SIL license text.
+You will also need the Jost* Book weight .otf file, which needs to be installed system-wide, or at least placed a location where all .tex can see. It is included in this repo for convenience, together with the required SIL license text. Double clicking and installing should be enough for most systems.
 
 ## Usage
 

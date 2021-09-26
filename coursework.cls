@@ -27,9 +27,9 @@
   \setmainfont[
     BoldFont={LibertinusSerif-Semibold.otf},
     ItalicFont={LibertinusSerif-Italic.otf},
-    BoldItalicFont={LibertinusSerif-SemiBoldItalic.otf}
+    BoldItalicFont={LibertinusSerif-SemiboldItalic.otf}
   ]{LibertinusSerif-Regular.otf}
-  \newfontfamily{\jost}{Jost-400-Book.otf}
+  \newfontfamily{\jost}{Jost-Book}
   \RequirePackage{unicode-math}
   \setmathfont[Scale=MatchUppercase]{LibertinusMath-Regular.otf}
 \fi

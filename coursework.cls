@@ -1,4 +1,4 @@
-\ProvidesClass{coursework} [2020/09/20 v0.01 LaTeX package for coursework, needs XeLaTeX]
+\ProvidesClass{coursework} [2021/03/29 v0.10 LaTeX package for coursework, needs XeLaTeX]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 \LoadClass{article}
@@ -19,13 +19,19 @@
 \RequirePackage{amsthm}
 \RequirePackage{iftex}
 \RequirePackage{cleveref}
+\RequirePackage{textcomp}
+\RequirePackage{gensymb}
 \newcommand{\ts}{\textsuperscript}
 \ifXeTeX
   \RequirePackage{fontspec}
-  \setmainfont{Linux Libertine O} % this exists in %localappdata%\Programs\MiKTeX 2.9\fonts\opentype\public\libertine since I installed {libertine} once
-  \newfontfamily{\jost}{Jost-Book}
+  \setmainfont[
+    BoldFont={LibertinusSerif-Semibold.otf},
+    ItalicFont={LibertinusSerif-Italic.otf},
+    BoldItalicFont={LibertinusSerif-SemiBoldItalic.otf}
+  ]{LibertinusSerif-Regular.otf}
+  \newfontfamily{\jost}{Jost-400-Book.otf}
   \RequirePackage{unicode-math}
-  \setmathfont[Scale=MatchUppercase]{Libertinus Math} % same here
+  \setmathfont[Scale=MatchUppercase]{LibertinusMath-Regular.otf}
 \fi
 
 % Core Colours
@@ -45,18 +51,19 @@
 
 % Muted
 \definecolor{PMS5005}{RGB}{182, 132, 140}
-\definecolor{PMS483}{RGB}{103, 51, 39}   
-\definecolor{PMS7518}{RGB}{109, 80, 71}  
-\definecolor{PMS391}{RGB}{156, 154, 0}   
+\definecolor{PMS483}{RGB}{103, 51, 39}
+\definecolor{PMS7518}{RGB}{109, 80, 71}
+\definecolor{PMS391}{RGB}{156, 154, 0}
 \definecolor{PMS3025}{cmyk}{1,0.21,0,0.58}% dark blue
 \definecolor{PMS643}{RGB}{198,209,214}    % light blue
-\definecolor{PMS3435}{RGB}{2,73,48}       % 
-\definecolor{PMS7475}{RGB}{89,135,135}    % 
+\definecolor{PMS3435}{RGB}{2,73,48}       %
+\definecolor{PMS7475}{RGB}{89,135,135}    %
 
 % Neutrals
 \definecolor{PMS423}{RGB}{150,147,142}    % gray
 \definecolor{PMS432}{RGB}{68,79,81}       % dark gray
 \definecolor{PMS616}{RGB}{221,214,155}    % sand
+\definecolor{superlightgray}{RGB}{232,232,232}
 
 % Aliases
 \colorlet{UOEblue}{PMS282}
@@ -92,7 +99,7 @@
 % code style
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \lstdefinestyle{style}{
-  % backgroundcolor=\color{backcolour}, 
+  % backgroundcolor=\color{backcolour},
   commentstyle=\color{UOEgreen},
   keywordstyle=\color{UOEviolet},
   numberstyle=\tiny\color{gray},
@@ -117,7 +124,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % proof box
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newtcbtheorem[ 
+\newtcbtheorem[
   crefname={Proof}{Proofs},
   Crefname={Proof}{Proofs}
 ]{Proof}{Proof}{
@@ -132,7 +139,7 @@
   top=1.3em,
   colback=white,
   colframe=UOEblue,
-  fonttitle=\small\jost,
+  fonttitle=\small\ifXeTeX\jost\fi,
   coltitle=white,
   boxed title style={
     sharp corners,
@@ -144,7 +151,7 @@
   % \begin{Proof}{Title of proof}{labeltag}
   %   inside
   % \end{Proof}
-  % 
+  %
   % with cleveref: \cref{prf:labeltag} and \Cref{prf:labeltag}
 }{prf}
 
@@ -165,6 +172,12 @@
   \vspace{5mm}
 }
 \newcommand{\R}{\mathbb{R}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% monospace inline code-block
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\code}[1]{\texttt{#1}}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
@@ -205,9 +218,9 @@
     \vbox{
       \vspace{3mm}
       \centering
-      \jost\Large\textcolor{UOEblue}{\@title}\par
+      \ifXeTeX\jost\fi\Large\textcolor{UOEblue}{\@title}\par
       \vspace{2mm}
-      \jost\small\textcolor{PMS432}{\@session}
+      \ifXeTeX\jost\fi\small\textcolor{PMS432}{\@session}
       \vspace{3mm}
     }
   }\par

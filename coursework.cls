@@ -9,7 +9,7 @@
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
 \RequirePackage{algorithmicx}
-\RequirePackage{algpseudocode}
+\RequirePackage[noend]{algpseudocode}
 \RequirePackage{algorithm}
 \RequirePackage{hyperref}
 \RequirePackage{xcolor}
@@ -19,18 +19,21 @@
 \RequirePackage{amsthm}
 \RequirePackage{iftex}
 \RequirePackage{cleveref}
-\RequirePackage{textcomp}
-\RequirePackage{gensymb}
+% \RequirePackage{textcomp}
+% \RequirePackage{gensymb} DO NOT UNCOMMENT THESE
+% They conflict with fontspec and cause warnings, they haven't been updated since 2003 and are not needed anyway -- if you need \degree or \celcius, find another method.
 \newcommand{\ts}{\textsuperscript}
 \ifXeTeX
-  \RequirePackage{fontspec}
+  \RequirePackage[no-math]{fontspec}
+  \RequirePackage{mathspec}
   \setmainfont[
     BoldFont={LibertinusSerif-Semibold.otf},
     ItalicFont={LibertinusSerif-Italic.otf},
-    BoldItalicFont={LibertinusSerif-SemiboldItalic.otf}
+    BoldItalicFont={LibertinusSerif-SemiboldItalic.otf},
+    Mapping=tex-text,
+    Ligatures={Common,Rare,Discretionary}
   ]{LibertinusSerif-Regular.otf}
   \newfontfamily{\jost}{Jost-Book}
-  \RequirePackage{unicode-math}
   \setmathfont[Scale=MatchUppercase]{LibertinusMath-Regular.otf}
 \fi
 
@@ -156,6 +159,40 @@
 }{prf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% solution box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtcbtheorem[
+  crefname={Solution}{Solutions},
+  Crefname={Solution}{Solutions}
+]{Solution}{Solution}{
+  enhanced,
+  sharp corners,
+  attach boxed title to top left={
+    xshift=-1mm,
+    yshift=-4mm,
+    yshifttext=-1mm
+  },
+  breakable,
+  top=1.3em,
+  colback=white,
+  colframe=UOEblue,
+  fonttitle=\small\ifXeTeX\jost\fi,
+  coltitle=white,
+  boxed title style={
+    sharp corners,
+    size=small,
+    colback=UOEblue,
+    colframe=UOEblue,
+  }
+  % Usage:
+  % \begin{Proof}{Title of proof}{labeltag}
+  %   inside
+  % \end{Proof}
+  %
+  % with cleveref: \cref{prf:labeltag} and \Cref{prf:labeltag}
+}{sol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % pseudocode box
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\psuedobox}[1]{\pseudobox{#1}}
@@ -164,7 +201,7 @@
   \noindent\fbox{%
     \parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{%
     \begin{minipage}{\textwidth}
-      \begin{algorithmic}
+      \begin{algorithmic}[1]
         #1
       \end{algorithmic}
     \end{minipage}}
